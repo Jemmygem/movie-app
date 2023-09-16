@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { AiOutlineLoading3Quarters, AiOutlineHome } from "react-icons/ai";
+import { AiOutlineLoading3Quarters, AiOutlineHome, AiFillPlayCircle  } from "react-icons/ai";
 import { BiCameraMovie } from 'react-icons/bi'
 import { PiMonitorPlay, PiNewspaperLight } from "react-icons/pi";
 import { IoLogOutOutline } from 'react-icons/io5'
+import { GoDotFill } from "react-icons/go";
 function View() {
   let { id } = useParams();
 
@@ -92,16 +93,26 @@ function View() {
                 </Link>
               </div>
             </div>
-            <div className="p-16 w-full">
+            <div data-testid="movie-card" className="p-16 w-full">
               <div className="h-full w-full relative">
-                <img
+                <img data-testid="movie-poster"
                   src={`http://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
                   alt="alt"
-                  className="w-full object-contain rounded-lg"
+                  className="h-full w-full object-contain rounded-lg"
                 />
+                <button className="flex justify-center items-center h-full w-full absolute inset-0">
+                    <AiFillPlayCircle className="text-gray-200 h-9 w-9" />
+                </button>
+              </div>
+              <div className="flex items-center gap-1 mb-5" >
+                <span data-testid="movie-title">{movie.title}</span>
+                <GoDotFill />
+                <span data-testid="movie-release-date">{movie.release_date}</span>
+                <GoDotFill />
+
               </div>
               <div>
-                <span>{movie.title}</span>
+              <p>{movie.overview}</p>
               </div>
             </div>
           </section>

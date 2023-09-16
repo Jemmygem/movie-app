@@ -76,7 +76,7 @@ function App() {
           {/* End of Navbar Section */}
 
           {/* Poster Section */}
-          <div className="flex justify-between items-center py-20 w-full">
+          <div className="flex justify-between items-center py-20 w-fulld">
             <div className="grid gap-3 text-white w-96">
               <span className="text-5xl">John Wick 3 : Parabellum</span>
               <div></div>
@@ -109,13 +109,13 @@ function App() {
           ) : (
             <div className="grid md:grid-cols-3 xl:grid-cols-4 justify-between gap-9 w-full">
               {movies.map((movie) => (
-                <Link
+                <Link data-testid="movie-card"
                   to={`/view/${movie.id}`}
                   key={movie.id}
                   className="flex flex-col w-full"
                 >
                   <div className="h-[490px] w-full">
-                    <img
+                    <img data-testid="movie-poster"
                       className="h-full w-full object-contain"
                       src={
                         "https://image.tmdb.org/t/p/w185/" + movie.poster_path
@@ -124,14 +124,15 @@ function App() {
                     />
                   </div>
                   <div className="grid gap-1 h-16 py-3">
-                    <span className="text-xs text-gray-500">USA</span>
-                    <span className="font-bold">{movie.title}</span>
+                    <span data-testid="movie-release-date"className="text-xs text-gray-500">USA {movie.release_date}
+</span>
+                    <span data-testid="movie-title" className="font-bold">{movie.title}</span>
                     <div className="flex justify-between items-center">
                       <div className="flex gap-2">
                         <span className="bg-yellow-500 font-bold text-xs py-1 px-2">
                           IMDb
                         </span>
-                        <span>78.0/100</span>
+                        <span> {movie.vote_average *10}/100</span>
                       </div>
                       <span className="font-bold">80%</span>
                     </div>
